@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bq70pwl5i58os"]
+
+[ext_resource type="Script" uid="uid://dg2y8x6k8jp28" path="res://scripts/ui/HUDController.gd" id="1"]
+
+[node name="HUD" type="CanvasLayer" unique_id=2037340982]
+layer = 2
+script = ExtResource("1")
+
+[node name="Root" type="Control" parent="." unique_id=35184713]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TopBarBG" type="ColorRect" parent="Root" unique_id=415010226]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 26.0
+color = Color(0.04, 0.04, 0.1, 0.82)
+
+[node name="TopBar" type="HBoxContainer" parent="Root" unique_id=51182068]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 636.0
+offset_bottom = 22.0
+theme_override_constants/separation = 8
+
+[node name="BalanceLabel" type="Label" parent="Root/TopBar" unique_id=750551441]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "Bal $10000"
+
+[node name="Spacer" type="Control" parent="Root/TopBar" unique_id=1663850268]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeLabel" type="Label" parent="Root/TopBar" unique_id=1384924133]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "05:00"
+
+[node name="StatusBar" type="HBoxContainer" parent="Root" unique_id=1690364646]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 27.0
+offset_right = 490.0
+offset_bottom = 45.0
+theme_override_constants/separation = 6
+
+[node name="SuspicionGauge" type="HBoxContainer" parent="Root/StatusBar" unique_id=1461436679]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Bar1" type="ColorRect" parent="Root/StatusBar/SuspicionGauge" unique_id=102097562]
+custom_minimum_size = Vector2(14, 10)
+layout_mode = 2
+color = Color(1, 0.5, 0, 1)
+
+[node name="Bar2" type="ColorRect" parent="Root/StatusBar/SuspicionGauge" unique_id=1320251561]
+custom_minimum_size = Vector2(14, 10)
+layout_mode = 2
+color = Color(1, 0.5, 0, 1)
+
+[node name="EyeIcon" type="TextureRect" parent="Root/StatusBar" unique_id=355231589]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="LeftPanelBG" type="ColorRect" parent="Root" unique_id=510732283]
+layout_mode = 0
+offset_top = 230.0
+offset_right = 210.0
+offset_bottom = 344.0
+color = Color(0.04, 0.04, 0.1, 0.78)
+
+[node name="RightPanel" type="VBoxContainer" parent="Root" unique_id=1658359634]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 234.0
+offset_right = 206.0
+offset_bottom = 340.0
+theme_override_constants/separation = 3
+
+[node name="RealizedLabel" type="Label" parent="Root/RightPanel" unique_id=1004519337]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 11
+text = "P&L $0"
+
+[node name="PosList" type="VBoxContainer" parent="Root/RightPanel" unique_id=358746591]
+layout_mode = 2
+theme_override_constants/separation = 2

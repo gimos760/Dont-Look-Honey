@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/irvin/Desktop/godot_game -name \"*.png\" -o -name \"*.mid\" -o -name \"*.md\" 2>/dev/null | sort)",
+      "Read(//Users/irvin/Desktop/godot_game/**)",
+      "Bash(ls /Users/irvin/Desktop/godot_game/ 2>/dev/null)",
+      "Read(//Applications/**)",
+      "Bash(mdfind \"kMDItemDisplayName == 'Godot*'\")",
+      "Bash(/Users/irvin/Desktop/Godot.app/Contents/MacOS/Godot --path /Users/irvin/Desktop/godot_game/Dont_Look_Honey --headless --quit)",
+      "Bash(ls -la \"/Users/irvin/Desktop/ui素材圖/dont_look_honey_uiux/\" 2>/dev/null || echo \"路徑不存在\")",
+      "Read(//Users/irvin/Desktop/ui素材圖/dont_look_honey_uiux/**)"
+    ]
+  }
+}
