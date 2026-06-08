@@ -56,7 +56,8 @@ func _show_slide(idx: int) -> void:
 	_hint_lbl.text = "[Z / X] Next"
 
 	if idx == SPLIT_SLIDE:
-		# Split: wife angry face (left) + husband nodding (right), centered to show full images
+		# Split: cutscene_4 (left half) + cutscene_nod (right half), each fills its side
+		_scene_image.offset_left = 0.0
 		_scene_image.offset_right = 320.0
 		_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		_scene_image.texture = load(IMAGES[3])
@@ -71,7 +72,7 @@ func _show_slide(idx: int) -> void:
 		_scene_image.texture = load(IMAGES[5])
 	else:
 		_scene_image.offset_right = 640.0
-		_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		_scene_image_right.visible = false
 		if idx < IMAGES.size():
 			_scene_image.texture = load(IMAGES[idx])

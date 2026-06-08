@@ -176,7 +176,7 @@ func _draw_ma_line(chart_w: float, price_h: float, hi: float, lo: float) -> void
 	var prev   := Vector2(-1.0, -1.0)
 
 	for i in range(count):
-		var s_i := max(0, i - 4)
+		var s_i: int = maxi(0, i - 4)
 		var sum := 0.0; var n := 0
 		for j in range(s_i, i + 1):
 			sum += float(candles[j]["close"]); n += 1

@@ -37,7 +37,6 @@ func _ready() -> void:
 	_phone.initialize(_market, _engine)
 	_hud.update_balance(_engine.get_available_balance())
 	_hud.update_time(_time_left)
-	_hud.update_realized(GameManager.realized_pnl)
 
 	# Wire signals
 	_alert.wife_turned.connect(_on_wife_turned)
@@ -55,11 +54,10 @@ func _ready() -> void:
 	_qte.qte_fail.connect(func(): _phone.input_blocked = false)
 
 	_engine.balance_updated.connect(_hud.update_balance)
-	_engine.realized_updated.connect(_hud.update_realized)
-	_engine.position_opened.connect(func(_p): _hud.update_positions(_market.stocks, _engine, _market))
-	_engine.position_closed.connect(func(_p, _n): _hud.update_positions(_market.stocks, _engine, _market))
+	_engine.position_opened.connect(func(_p): _phone.refresh_current_layer())
+	_engine.position_closed.connect(func(_p, _n): _phone.refresh_current_layer())
 
-	_market.candle_closed.connect(_on_candle_closed)
+	_market.tick_completed.connect(_on_tick_completed)
 	_market.high_volume_alert.connect(_on_high_volume)
 
 	_stage_timer.wait_time = STAGE_DURATION
@@ -109,7 +107,6 @@ func _process(delta: float) -> void:
 		return
 	_time_left = _stage_timer.time_left
 	_hud.update_time(_time_left)
-	_hud.update_positions(_market.stocks, _engine, _market)
 
 
 
@@ -119,6 +116,7 @@ func _on_wife_turned() -> void:
 	_hud.set_eye_open(true)
 	if is_instance_valid(_wife_sprite) and _tex_wife_front:
 		_wife_sprite.texture = _tex_wife_front
+	_phone.set_right_hand_react(true)
 	_move_wife_for_turn()
 
 
@@ -126,6 +124,7 @@ func _on_wife_looked_away() -> void:
 	_hud.set_eye_open(false)
 	if is_instance_valid(_wife_sprite) and _tex_wife_back:
 		_wife_sprite.texture = _tex_wife_back
+	_phone.set_right_hand_react(false)
 
 
 func _on_qte_triggered() -> void:
@@ -144,8 +143,9 @@ func _on_suspicion_depleted() -> void:
 func _on_stage_timer_end() -> void:
 	_market.stop()
 	_alert.stop()
-	var total := GameManager.get_total_realized()
-	if total >= GameManager.WIN_TARGET:
+	var total  := GameManager.get_total_realized()
+	var target := GameManager.get_stage_target(GameManager.current_stage)
+	if total >= target:
 		_running = false
 		if GameManager.current_stage < 3:
 			GameManager.advance_stage()
@@ -155,8 +155,8 @@ func _on_stage_timer_end() -> void:
 		_game_over(GameManager.GameOverReason.TIMEOUT)
 
 
-func _on_candle_closed(_stock_id: String, _candle: Dictionary) -> void:
-	_phone.refresh_chart_if_visible()
+func _on_tick_completed() -> void:
+	_phone.refresh_current_layer()
 
 
 func _on_high_volume(stock_id: String, direction: String, probability: float) -> void:

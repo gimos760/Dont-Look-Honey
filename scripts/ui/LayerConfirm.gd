@@ -62,10 +62,11 @@ func _refresh() -> void:
 
 func _refresh_selection() -> void:
 	var has_pos := _engine.has_position(_stock["id"]) if _engine else false
+	var at_max: bool = has_pos and _engine.get_position(_stock["id"]).get("shares", 0) >= TradingEngine.MAX_ADDS
 	var opts := [_opt0, _opt1, _opt2]
 	for i in range(opts.size()):
-		# opt0 disabled when has position; opt1 disabled when no position
-		var disabled := (i == 0 and has_pos) or (i == 1 and not has_pos)
+		# opt0 disabled when has position; opt1 disabled when no position or at max shares
+		var disabled: bool = (i == 0 and has_pos) or (i == 1 and (not has_pos or at_max))
 		if disabled:
 			opts[i].add_theme_color_override("font_color", Color(0.45, 0.45, 0.45, 0.5))
 			opts[i].text = "  " + _base_text(i) + "  "
@@ -82,7 +83,7 @@ func _base_text(i: int) -> String:
 		0: return "Confirm Order"
 		1:
 			var pos: Dictionary = _engine.get_position(_stock["id"]) if _engine else {}
-			var add_count: int = pos.get("add_count", 0) if not pos.is_empty() else 0
-			return "Add 1 Share (%d/%d)" % [add_count, TradingEngine.MAX_ADDS]
+			var shares: int = pos.get("shares", 0) if not pos.is_empty() else 0
+			return "Add 1 Share (%d/%d)" % [shares, TradingEngine.MAX_ADDS]
 		2: return "Back"
 	return ""

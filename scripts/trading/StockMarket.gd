@@ -3,6 +3,7 @@ extends Node
 
 signal candle_closed(stock_id: String, candle: Dictionary)
 signal high_volume_alert(stock_id: String, direction: String, reversal_prob: float)
+signal tick_completed
 
 const CANDLE_DURATION := 4.0
 const MAX_HISTORY    := 70
@@ -63,6 +64,7 @@ func get_last_candles(stock_id: String, n: int = SHOWN_CANDLES) -> Array[Diction
 func _on_tick() -> void:
 	for s in stocks:
 		_build_candle(s["id"], true)
+	tick_completed.emit()
 
 
 func _build_candle(stock_id: String, emit: bool) -> void:

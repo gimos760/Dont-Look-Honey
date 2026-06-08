@@ -19,13 +19,15 @@ color = Color(0.0, 0.0, 0.0, 1)
 [node name="SceneImage" type="TextureRect" parent="ScenePanel"]
 offset_right = 640.0
 offset_bottom = 248.0
-stretch_mode = 6
+expand_mode = 1
+stretch_mode = 5
 
 [node name="SceneImageRight" type="TextureRect" parent="ScenePanel"]
 offset_left = 320.0
 offset_right = 640.0
 offset_bottom = 248.0
-stretch_mode = 6
+expand_mode = 1
+stretch_mode = 5
 visible = false
 
 [node name="DialogueBox" type="ColorRect" parent="."]

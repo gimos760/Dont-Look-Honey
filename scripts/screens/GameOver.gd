@@ -14,7 +14,8 @@ func _ready() -> void:
 	AudioManager.stop_bgm()
 	_reason_lbl.text = REASON_TEXT.get(
 		GameManager.game_over_reason, "Game Over")
-	_amount_lbl.text = "Final: $%.0f / $30,000" % GameManager.get_total_realized()
+	var target := GameManager.get_stage_target(GameManager.current_stage)
+	_amount_lbl.text = "Final: $%.0f / $%.0f" % [GameManager.get_total_realized(), target]
 
 
 func _input(event: InputEvent) -> void:

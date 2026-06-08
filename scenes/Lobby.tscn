@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://lobby"]
 
 [ext_resource type="Script" path="res://scripts/screens/Lobby.gd" id="1"]
 
@@ -16,34 +16,74 @@ color = Color(0.05, 0.05, 0.12, 1)
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBox" type="VBoxContainer" parent="Center"]
-theme_override_constants/separation = 6
-custom_minimum_size = Vector2(240, 0)
+[node name="MainPanel" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(260, 0)
+theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="Center/VBox"]
+[node name="TitleLabel" type="Label" parent="Center/MainPanel"]
 theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1.0, 0.92, 0.6, 1)
 horizontal_alignment = 1
 text = "Don't Look, Honey"
 
-[node name="SubLabel" type="Label" parent="Center/VBox"]
+[node name="SubLabel" type="Label" parent="Center/MainPanel"]
 theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 text = "Sneaky Futures Trading"
 
-[node name="Spacer" type="Control" parent="Center/VBox"]
-custom_minimum_size = Vector2(0, 24)
+[node name="Spacer" type="Control" parent="Center/MainPanel"]
+custom_minimum_size = Vector2(0, 20)
 
-[node name="StartLabel" type="Label" parent="Center/VBox"]
+[node name="OptStart" type="Label" parent="Center/MainPanel"]
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
-text = "[Z]  Start Game"
+text = "Start Game"
 
-[node name="QuitLabel" type="Label" parent="Center/VBox"]
+[node name="OptOptions" type="Label" parent="Center/MainPanel"]
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
-text = "[X]  Quit"
+text = "Options"
+
+[node name="OptQuit" type="Label" parent="Center/MainPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "Quit"
+
+[node name="OptionsPanel" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(260, 0)
+theme_override_constants/separation = 8
+visible = false
+
+[node name="OptTitle" type="Label" parent="Center/OptionsPanel"]
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.6, 1)
+horizontal_alignment = 1
+text = "Options"
+
+[node name="Spacer" type="Control" parent="Center/OptionsPanel"]
+custom_minimum_size = Vector2(0, 20)
+
+[node name="OptLang" type="Label" parent="Center/OptionsPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "Language: English"
+
+[node name="OptBack" type="Label" parent="Center/OptionsPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "Back"
+
+[node name="HintLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+theme_override_font_sizes/font_size = 9
+theme_override_colors/font_color = Color(0.45, 0.45, 0.45, 1)
+horizontal_alignment = 1
+text = "[W/S] Navigate   [Z] Select"
 
 [node name="VersionLabel" type="Label" parent="."]
 anchor_left = 1.0

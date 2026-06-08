@@ -7,7 +7,10 @@ enum GameOverReason {
 }
 
 const STARTING_CAPITAL: float = 10000.0
-const WIN_TARGET: float = 30000.0
+const STAGE_TARGETS: Array[float] = [20000.0, 30000.0, 50000.0]
+
+func get_stage_target(stage: int) -> float:
+	return STAGE_TARGETS[clamp(stage - 1, 0, STAGE_TARGETS.size() - 1)]
 
 var current_stage: int = 1
 var cutscene_seen: bool = false

@@ -72,7 +72,7 @@ func add_to_position(stock_id: String) -> bool:
 	var pos: Dictionary = get_position(stock_id)
 	if pos.is_empty():
 		return false
-	if pos["add_count"] >= MAX_ADDS:
+	if pos["shares"] >= MAX_ADDS:
 		order_failed.emit("Max adds reached (10)")
 		return false
 	var price := _market.get_price(stock_id)

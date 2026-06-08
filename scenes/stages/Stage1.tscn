@@ -1,54 +1,52 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene format=3 uid="uid://cbin2dtl3mgjq"]
 
-[ext_resource type="Script" path="res://scripts/stages/Stage1.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/trading/StockMarket.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/trading/TradingEngine.gd" id="3"]
-[ext_resource type="Script" path="res://scripts/wife/WifeAlertSystem.gd" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://scenes/ui/Phone.tscn" id="6"]
+[ext_resource type="Script" uid="uid://b6kuq2pjte51q" path="res://scripts/stages/Stage1.gd" id="1"]
+[ext_resource type="Script" uid="uid://br81r4yt8c5tl" path="res://scripts/trading/StockMarket.gd" id="2"]
+[ext_resource type="Script" uid="uid://bjkxhphx2x3cw" path="res://scripts/trading/TradingEngine.gd" id="3"]
+[ext_resource type="Script" uid="uid://docmjvefe13pl" path="res://scripts/wife/WifeAlertSystem.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://bq70pwl5i58os" path="res://scenes/ui/HUD.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dsuusgb7oqe2m" path="res://scenes/ui/Phone.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ui/QTE.tscn" id="7"]
-[ext_resource type="Texture2D" path="res://assets/sprites/bg_home.png" id="8"]
-[ext_resource type="Texture2D" path="res://assets/sprites/wife_back.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://co11n1idb20iv" path="res://assets/sprites/bg_home.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://diy5r864nxm7e" path="res://assets/sprites/wife_back.png" id="9"]
 
-[node name="Stage1" type="Node2D"]
+[node name="Stage1" type="Node2D" unique_id=588239501]
 script = ExtResource("1")
 
-[node name="BG" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="." unique_id=1873681027]
 position = Vector2(320, 180)
 texture = ExtResource("8")
-centered = true
 
-[node name="HintLabel" type="Label" parent="."]
-offset_left = 0.0
+[node name="HintLabel" type="Label" parent="." unique_id=1319643185]
 offset_top = 344.0
 offset_right = 640.0
 offset_bottom = 360.0
-theme_override_font_sizes/font_size = 7
 theme_override_colors/font_color = Color(0.4, 0.4, 0.45, 1)
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 7
 text = "Stage 1 — Home   [Space] Hide Phone   [Z] Confirm   [X] Cancel   [W/S] Navigate   [C] Close Position"
+horizontal_alignment = 1
 
-[node name="WifeContainer" type="Node2D" parent="."]
+[node name="WifeContainer" type="Node2D" parent="." unique_id=1543051379]
 
-[node name="WifeSprite" type="Sprite2D" parent="WifeContainer"]
-position = Vector2(490, 270)
-scale = Vector2(0.45, 0.45)
+[node name="WifeSprite" type="Sprite2D" parent="WifeContainer" unique_id=263626090]
+position = Vector2(399, 215)
+scale = Vector2(0.49843746, 0.56874996)
 texture = ExtResource("9")
 
-[node name="WifeAlertSystem" type="Node" parent="WifeContainer"]
+[node name="WifeAlertSystem" type="Node" parent="WifeContainer" unique_id=1744322136]
 script = ExtResource("4")
 
-[node name="StockMarket" type="Node" parent="."]
+[node name="StockMarket" type="Node" parent="." unique_id=1074646394]
 script = ExtResource("2")
 
-[node name="TradingEngine" type="Node" parent="."]
+[node name="TradingEngine" type="Node" parent="." unique_id=1152904922]
 script = ExtResource("3")
 
-[node name="StageTimer" type="Timer" parent="."]
+[node name="StageTimer" type="Timer" parent="." unique_id=1487498853]
 one_shot = true
 
-[node name="HUD" parent="." instance=ExtResource("5")]
+[node name="HUD" parent="." unique_id=764433055 instance=ExtResource("5")]
 
-[node name="Phone" parent="." instance=ExtResource("6")]
+[node name="Phone" parent="." unique_id=1448981180 instance=ExtResource("6")]
 
-[node name="QTE" parent="." instance=ExtResource("7")]
+[node name="QTE" parent="." unique_id=565924674 instance=ExtResource("7")]
