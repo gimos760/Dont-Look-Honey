@@ -1,6 +1,6 @@
 extends StageBase
 
-const WIFE_POSITIONS: Array = [
+const HONEY_POSITIONS: Array = [
 	Vector2(80,  258),
 	Vector2(200, 268),
 	Vector2(320, 272),
@@ -19,9 +19,9 @@ func _setup_stage() -> void:
 	_set_stage_hint("hint_stage3")
 
 
-func _move_wife_for_turn() -> void:
-	if is_instance_valid(_wife_sprite):
-		_wife_sprite.position = WIFE_POSITIONS[randi() % WIFE_POSITIONS.size()]
+func _move_honey_for_turn() -> void:
+	if is_instance_valid(_honey_sprite):
+		_honey_sprite.position = HONEY_POSITIONS[randi() % HONEY_POSITIONS.size()]
 
 
 func _update_suspicion_display() -> void:

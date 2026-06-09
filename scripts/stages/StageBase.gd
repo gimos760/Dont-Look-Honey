@@ -7,19 +7,19 @@ var _bgm_path: String = "res://assets/music/bgm_game.wav"
 
 @onready var _market: StockMarket              = $StockMarket
 @onready var _engine: TradingEngine            = $TradingEngine
-@onready var _alert: WifeAlertSystem           = $WifeContainer/WifeAlertSystem
+@onready var _alert: HoneyAlertSystem          = $HoneyContainer/HoneyAlertSystem
 @onready var _hud: HUDController               = $HUD
 @onready var _phone: PhoneController           = $Phone
 @onready var _qte: QTEManager                  = $QTE
 @onready var _stage_timer: Timer               = $StageTimer
-@onready var _wife_sprite: Sprite2D            = $WifeContainer/WifeSprite
+@onready var _honey_sprite: Sprite2D           = $HoneyContainer/HoneySprite
 
 var _time_left: float = 0.0
 var _running: bool    = false
 var _paused: bool     = false
 
-var _tex_wife_back: Texture2D
-var _tex_wife_front: Texture2D
+var _tex_honey_back: Texture2D
+var _tex_honey_front: Texture2D
 
 var _pause_menu: PauseMenu
 
@@ -40,8 +40,8 @@ func _ready() -> void:
 	_hud.update_time(_time_left)
 
 	# Wire signals
-	_alert.wife_turned.connect(_on_wife_turned)
-	_alert.wife_looked_away.connect(_on_wife_looked_away)
+	_alert.honey_turned.connect(_on_honey_turned)
+	_alert.honey_looked_away.connect(_on_honey_looked_away)
 	_alert.qte_triggered.connect(_on_qte_triggered)
 	_alert.game_over_caught.connect(_on_caught)
 	_alert.suspicion_depleted.connect(_on_suspicion_depleted)
@@ -87,10 +87,10 @@ func _set_stage_hint(key: String) -> void:
 
 func _start() -> void:
 	_running = true
-	_tex_wife_back  = load("res://assets/sprites/wife_back.png")
-	_tex_wife_front = load("res://assets/sprites/wife_front.png")
-	if is_instance_valid(_wife_sprite) and _tex_wife_back:
-		_wife_sprite.texture = _tex_wife_back
+	_tex_honey_back  = load("res://assets/sprites/Honey_back.png")
+	_tex_honey_front = load("res://assets/sprites/Honey_front.png")
+	if is_instance_valid(_honey_sprite) and _tex_honey_back:
+		_honey_sprite.texture = _tex_honey_back
 	AudioManager.play_bgm(_bgm_path)
 	_market.start()
 	_alert.start()
@@ -119,18 +119,18 @@ func _process(delta: float) -> void:
 
 # --- Signal callbacks ---
 
-func _on_wife_turned() -> void:
+func _on_honey_turned() -> void:
 	_hud.set_eye_open(true)
-	if is_instance_valid(_wife_sprite) and _tex_wife_front:
-		_wife_sprite.texture = _tex_wife_front
+	if is_instance_valid(_honey_sprite) and _tex_honey_front:
+		_honey_sprite.texture = _tex_honey_front
 	_phone.set_right_hand_react(true)
-	_move_wife_for_turn()
+	_move_honey_for_turn()
 
 
-func _on_wife_looked_away() -> void:
+func _on_honey_looked_away() -> void:
 	_hud.set_eye_open(false)
-	if is_instance_valid(_wife_sprite) and _tex_wife_back:
-		_wife_sprite.texture = _tex_wife_back
+	if is_instance_valid(_honey_sprite) and _tex_honey_back:
+		_honey_sprite.texture = _tex_honey_back
 	_phone.set_right_hand_react(false)
 
 
@@ -185,6 +185,6 @@ func _game_over(reason: GameManager.GameOverReason) -> void:
 	GameManager.trigger_game_over(reason)
 
 
-# Subclasses override to reposition wife sprite
-func _move_wife_for_turn() -> void:
+# Subclasses override to reposition honey sprite
+func _move_honey_for_turn() -> void:
 	pass

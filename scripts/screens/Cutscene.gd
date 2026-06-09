@@ -2,8 +2,8 @@ extends Node2D
 
 const DIALOGUE_KEYS: Array[Dictionary] = [
 	{"speaker": "",        "text": "cs_0"},
-	{"speaker": "sp_wife", "text": "cs_1"},
-	{"speaker": "sp_wife", "text": "cs_2"},
+	{"speaker": "sp_honey", "text": "cs_1"},
+	{"speaker": "sp_honey", "text": "cs_2"},
 	{"speaker": "sp_husb", "text": "cs_3"},
 	{"speaker": "sp_husb", "text": "cs_4"},
 ]
@@ -12,7 +12,7 @@ const IMAGES: Array[String] = [
 	"res://assets/sprites/cutscene_1.png",   # 0: husband on sofa
 	"res://assets/sprites/cutscene_2.png",   # 1: same scene
 	"res://assets/sprites/cutscene_3.png",   # 2: full room confrontation
-	"res://assets/sprites/cutscene_4.png",   # 3: wife angry close-up (split LEFT)
+	"res://assets/sprites/cutscene_4.png",   # 3: honey angry close-up (split LEFT)
 	"res://assets/sprites/cutscene_nod.png", # 4: husband nodding (split RIGHT)
 	"res://assets/sprites/cutscene_5.png",   # 5: confident husband (slide 4)
 ]

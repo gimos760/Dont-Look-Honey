@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://b6kuq2pjte51q" path="res://scripts/stages/Stage1.gd" id="1"]
 [ext_resource type="Script" uid="uid://br81r4yt8c5tl" path="res://scripts/trading/StockMarket.gd" id="2"]
 [ext_resource type="Script" uid="uid://bjkxhphx2x3cw" path="res://scripts/trading/TradingEngine.gd" id="3"]
-[ext_resource type="Script" uid="uid://docmjvefe13pl" path="res://scripts/wife/WifeAlertSystem.gd" id="4"]
+[ext_resource type="Script" uid="uid://docmjvefe13pl" path="res://scripts/honey/HoneyAlertSystem.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://bq70pwl5i58os" path="res://scenes/ui/HUD.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dsuusgb7oqe2m" path="res://scenes/ui/Phone.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ui/QTE.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://co11n1idb20iv" path="res://assets/sprites/bg_home.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://diy5r864nxm7e" path="res://assets/sprites/wife_back.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cpjf03eum15lh" path="res://assets/sprites/Honey_back.png" id="9"]
 
 [node name="Stage1" type="Node2D" unique_id=588239501]
 script = ExtResource("1")
@@ -26,14 +26,14 @@ theme_override_font_sizes/font_size = 7
 text = "Stage 1 — Home   [Space] Hide Phone   [Z] Confirm   [X] Cancel   [W/S] Navigate   [C] Close Position"
 horizontal_alignment = 1
 
-[node name="WifeContainer" type="Node2D" parent="." unique_id=1543051379]
+[node name="HoneyContainer" type="Node2D" parent="." unique_id=1543051379]
 
-[node name="WifeSprite" type="Sprite2D" parent="WifeContainer" unique_id=263626090]
+[node name="HoneySprite" type="Sprite2D" parent="HoneyContainer" unique_id=263626090]
 position = Vector2(399, 215)
 scale = Vector2(0.49843746, 0.56874996)
 texture = ExtResource("9")
 
-[node name="WifeAlertSystem" type="Node" parent="WifeContainer" unique_id=1744322136]
+[node name="HoneyAlertSystem" type="Node" parent="HoneyContainer" unique_id=1744322136]
 script = ExtResource("4")
 
 [node name="StockMarket" type="Node" parent="." unique_id=1074646394]

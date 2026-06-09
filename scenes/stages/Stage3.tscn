@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://scripts/stages/Stage3.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/trading/StockMarket.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/trading/TradingEngine.gd" id="3"]
-[ext_resource type="Script" path="res://scripts/wife/WifeAlertSystem.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/honey/HoneyAlertSystem.gd" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/ui/Phone.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ui/QTE.tscn" id="7"]
 [ext_resource type="Texture2D" path="res://assets/sprites/bg_date.png" id="8"]
-[ext_resource type="Texture2D" path="res://assets/sprites/wife_back.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Honey_back.png" id="9"]
 
 [node name="Stage3" type="Node2D"]
 script = ExtResource("1")
@@ -28,14 +28,14 @@ theme_override_colors/font_color = Color(0.4, 0.4, 0.45, 1)
 horizontal_alignment = 1
 text = "Stage 3 — Date Spot   [Space] Hide   [I/O/J/K] QTE   Suspicion gauge active!"
 
-[node name="WifeContainer" type="Node2D" parent="."]
+[node name="HoneyContainer" type="Node2D" parent="."]
 
-[node name="WifeSprite" type="Sprite2D" parent="WifeContainer"]
+[node name="HoneySprite" type="Sprite2D" parent="HoneyContainer"]
 position = Vector2(400, 270)
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("9")
 
-[node name="WifeAlertSystem" type="Node" parent="WifeContainer"]
+[node name="HoneyAlertSystem" type="Node" parent="HoneyContainer"]
 script = ExtResource("4")
 
 [node name="StockMarket" type="Node" parent="."]
