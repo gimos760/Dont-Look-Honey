@@ -50,11 +50,10 @@ func _refresh() -> void:
 	if not pos.is_empty():
 		var pnl := _engine.get_floating_pnl(_stock["id"])
 		var pct := _engine.get_floating_pnl_pct(_stock["id"])
-		_hint_lbl.text = "Pos: %s x%d  P&L: $%.2f (%.1f%%)  [Z]Order [X]Back" % [
-			pos["direction"].to_upper(), pos["shares"], pnl, pct
-		]
+		var dir_str := Loc.t("dir_long") if pos["direction"] == "long" else Loc.t("dir_short")
+		_hint_lbl.text = Loc.t("chart_hint_pos") % [dir_str, pos["shares"], pnl, pct]
 	else:
-		_hint_lbl.text = "[Z]Select Direction → Confirm  [X]Back"
+		_hint_lbl.text = Loc.t("chart_hint_no_pos")
 
 
 func move_selection(dir: int) -> void:
@@ -69,7 +68,8 @@ func move_selection(dir: int) -> void:
 
 func show_high_volume(direction: String, reversal_prob: float) -> void:
 	_hv_panel.visible = true
-	_hv_label.text    = "High Vol  Trend: %s  Rev: %.0f%%" % [direction, reversal_prob * 100.0]
+	var dir_str := Loc.t("trend_up") if direction == "up" else Loc.t("trend_down")
+	_hv_label.text = Loc.t("chart_high_vol") % [dir_str, reversal_prob * 100.0]
 	_chart_node.show_high_volume(direction, reversal_prob)
 	# Auto-hide on next candle (4 s)
 	_high_vol_timer = get_tree().create_timer(4.0)
@@ -85,8 +85,10 @@ func _update_direction_highlight() -> void:
 	var pos: Dictionary = _engine.get_position(_stock["id"]) if _engine else {}
 	var locked := not pos.is_empty()
 
-	_long_lbl.text  = "> Long <" if _selection == 0 else "  Long  "
-	_short_lbl.text = "> Short <" if _selection == 1 else "  Short  "
+	var long_btn  := Loc.t("dir_long_btn")
+	var short_btn := Loc.t("dir_short_btn")
+	_long_lbl.text  = "> %s <" % long_btn  if _selection == 0 else "  %s  " % long_btn
+	_short_lbl.text = "> %s <" % short_btn if _selection == 1 else "  %s  " % short_btn
 
 	var active_col := Color(0.90, 0.85, 0.15)
 	var idle_col   := Color(0.45, 0.45, 0.45)

@@ -3,6 +3,7 @@ extends Node2D
 
 # Override in subclass
 var STAGE_DURATION: float = 300.0
+var _bgm_path: String = "res://assets/music/bgm_game.wav"
 
 @onready var _market: StockMarket              = $StockMarket
 @onready var _engine: TradingEngine            = $TradingEngine
@@ -78,13 +79,19 @@ func _setup_stage() -> void:
 	pass
 
 
+func _set_stage_hint(key: String) -> void:
+	var lbl: Label = get_node_or_null("HintLabel")
+	if lbl:
+		lbl.text = Loc.t(key)
+
+
 func _start() -> void:
 	_running = true
 	_tex_wife_back  = load("res://assets/sprites/wife_back.png")
 	_tex_wife_front = load("res://assets/sprites/wife_front.png")
 	if is_instance_valid(_wife_sprite) and _tex_wife_back:
 		_wife_sprite.texture = _tex_wife_back
-	AudioManager.play_bgm("res://assets/music/bgm_game.wav")
+	AudioManager.play_bgm(_bgm_path)
 	_market.start()
 	_alert.start()
 	_stage_timer.start()

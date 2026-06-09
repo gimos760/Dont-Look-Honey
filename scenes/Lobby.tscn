@@ -45,6 +45,12 @@ theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 text = "Options"
 
+[node name="OptStageSelect" type="Label" parent="Center/MainPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+visible = false
+text = "Stage Select"
+
 [node name="OptQuit" type="Label" parent="Center/MainPanel"]
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
@@ -64,6 +70,16 @@ text = "Options"
 [node name="Spacer" type="Control" parent="Center/OptionsPanel"]
 custom_minimum_size = Vector2(0, 20)
 
+[node name="OptBgmVol" type="Label" parent="Center/OptionsPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "BGM: [██████████] 100%"
+
+[node name="OptSfxVol" type="Label" parent="Center/OptionsPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "SFX: [██████████] 100%"
+
 [node name="OptLang" type="Label" parent="Center/OptionsPanel"]
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
@@ -73,6 +89,35 @@ text = "Language: English"
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 text = "Back"
+
+[node name="StageSelectPanel" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(260, 0)
+theme_override_constants/separation = 8
+visible = false
+
+[node name="SSTitle" type="Label" parent="Center/StageSelectPanel"]
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.92, 0.6, 1)
+horizontal_alignment = 1
+text = "— Stage Select —"
+
+[node name="Spacer" type="Control" parent="Center/StageSelectPanel"]
+custom_minimum_size = Vector2(0, 20)
+
+[node name="SSStage1" type="Label" parent="Center/StageSelectPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "Stage 1"
+
+[node name="SSStage2" type="Label" parent="Center/StageSelectPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "Stage 2"
+
+[node name="SSStage3" type="Label" parent="Center/StageSelectPanel"]
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+text = "Stage 3"
 
 [node name="HintLabel" type="Label" parent="."]
 anchor_left = 0.0

@@ -7,10 +7,12 @@ const COLOR_BG_ROW   := Color(0.08, 0.10, 0.15, 0.70)
 var _cursor: int = 0
 var _rows: Array[Control] = []
 
-@onready var _list: VBoxContainer = $Scroll/List
+@onready var _header: Label        = $Header
+@onready var _list:   VBoxContainer = $Scroll/List
 
 
 func refresh(stocks: Array[Dictionary], engine: TradingEngine, market: StockMarket) -> void:
+	_header.text = Loc.t("ls_header")
 	for r in _rows:
 		if is_instance_valid(r):
 			r.queue_free()
@@ -80,7 +82,7 @@ func _make_row(idx: int, s: Dictionary, engine: TradingEngine, market: StockMark
 	hbox.add_child(shares_lbl)
 	hbox.add_child(pnl_lbl)
 
-	var hint_lbl := _lbl("[Z]Ent [C]Cls", 90)
+	var hint_lbl := _lbl(Loc.t("ls_hint"), 90)
 	hint_lbl.add_theme_color_override("font_color", Color(0.55, 0.55, 0.55))
 	hbox.add_child(hint_lbl)
 

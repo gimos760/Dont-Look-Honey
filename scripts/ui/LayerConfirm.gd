@@ -51,11 +51,12 @@ func _refresh() -> void:
 	var pos   := _engine.get_position(_stock["id"])
 
 	_name_lbl.text  = _stock["name"]
-	_dir_lbl.text   = "Direction: %s" % _direction.to_upper()
+	var dir_str := Loc.t("dir_long") if _direction == "long" else Loc.t("dir_short")
+	_dir_lbl.text   = Loc.t("lc_direction") % dir_str
 	_dir_lbl.add_theme_color_override("font_color",
 		Color.GREEN if _direction == "long" else Color.RED)
-	_price_lbl.text = "Price:  $%.2f" % price
-	_cost_lbl.text  = "Cost:   $%.2f" % price
+	_price_lbl.text = Loc.t("lc_price") % price
+	_cost_lbl.text  = Loc.t("lc_cost") % price
 
 	_refresh_selection()
 
@@ -80,10 +81,10 @@ func _refresh_selection() -> void:
 
 func _base_text(i: int) -> String:
 	match i:
-		0: return "Confirm Order"
+		0: return Loc.t("lc_confirm")
 		1:
 			var pos: Dictionary = _engine.get_position(_stock["id"]) if _engine else {}
 			var shares: int = pos.get("shares", 0) if not pos.is_empty() else 0
-			return "Add 1 Share (%d/%d)" % [shares, TradingEngine.MAX_ADDS]
-		2: return "Back"
+			return Loc.t("lc_add_share") % [shares, TradingEngine.MAX_ADDS]
+		2: return Loc.t("lc_back")
 	return ""

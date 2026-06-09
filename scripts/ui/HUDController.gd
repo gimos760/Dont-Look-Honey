@@ -51,7 +51,7 @@ func _stop_pulse() -> void:
 
 
 func update_balance(balance: float) -> void:
-	_balance_lbl.text = "Bal $%.0f" % balance
+	_balance_lbl.text = Loc.t("hud_bal") % balance
 
 
 func update_time(seconds: float) -> void:

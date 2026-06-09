@@ -10,7 +10,9 @@ const WIFE_POSITIONS: Array = [
 
 func _setup_stage() -> void:
 	STAGE_DURATION = 420.0
+	_bgm_path = "res://assets/music/bgm_stage1.wav"
 	_alert.configure_medium()
+	_set_stage_hint("hint_stage2")
 
 
 func _move_wife_for_turn() -> void:

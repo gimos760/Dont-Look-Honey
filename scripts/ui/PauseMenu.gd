@@ -6,8 +6,10 @@ signal quit_to_lobby()
 
 var _cursor: int = 0  # 0 = 繼續, 1 = 退出大廳
 
+@onready var _title:      Label = $Panel/VBox/Title
 @onready var _opt_resume: Label = $Panel/VBox/OptResume
 @onready var _opt_quit:   Label = $Panel/VBox/OptQuit
+@onready var _hint:       Label = $Panel/VBox/Hint
 
 
 func _ready() -> void:
@@ -20,6 +22,8 @@ func open() -> void:
 	visible = true
 	get_tree().paused = true
 	_cursor = 0
+	_title.text = Loc.t("pause_title")
+	_hint.text  = Loc.t("pause_hint")
 	_refresh()
 
 
@@ -53,8 +57,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _refresh() -> void:
-	_opt_resume.text = "> 繼續遊戲 <" if _cursor == 0 else "  繼續遊戲  "
-	_opt_quit.text   = "> 退出到大廳 <" if _cursor == 1 else "  退出到大廳  "
+	var resume := Loc.t("pause_resume")
+	var quit   := Loc.t("pause_quit")
+	_opt_resume.text = ("> %s <" if _cursor == 0 else "  %s  ") % resume
+	_opt_quit.text   = ("> %s <" if _cursor == 1 else "  %s  ") % quit
 	_opt_resume.add_theme_color_override("font_color",
 		Color(0.95, 0.85, 0.15) if _cursor == 0 else Color(0.65, 0.65, 0.65))
 	_opt_quit.add_theme_color_override("font_color",

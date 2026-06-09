@@ -1,11 +1,11 @@
 extends Node2D
 
-const DIALOGUE: Array[Dictionary] = [
-	{"speaker": "", "text": "A quiet Sunday afternoon at home..."},
-	{"speaker": "Wife", "text": "I saw you checking your phone again..."},
-	{"speaker": "Wife", "text": "If I catch you trading again, you're DONE!"},
-	{"speaker": "Husband", "text": "(Nods obediently)"},
-	{"speaker": "Husband", "text": "(But deep down... the charts are calling...)"},
+const DIALOGUE_KEYS: Array[Dictionary] = [
+	{"speaker": "",        "text": "cs_0"},
+	{"speaker": "sp_wife", "text": "cs_1"},
+	{"speaker": "sp_wife", "text": "cs_2"},
+	{"speaker": "sp_husb", "text": "cs_3"},
+	{"speaker": "sp_husb", "text": "cs_4"},
 ]
 
 const IMAGES: Array[String] = [
@@ -29,6 +29,7 @@ var _slide: int = 0
 
 
 func _ready() -> void:
+	AudioManager.play_bgm("res://assets/music/bgm_cutscene.wav")
 	_show_slide(_slide)
 
 
@@ -41,19 +42,22 @@ func _input(event: InputEvent) -> void:
 
 func _next() -> void:
 	_slide += 1
-	if _slide >= DIALOGUE.size():
+	if _slide >= DIALOGUE_KEYS.size():
+		AudioManager.play_ui_confirm()
 		GameManager.cutscene_seen = true
 		GameManager.change_scene_to_stage(1)
 	else:
+		AudioManager.play_ui_confirm()
 		_show_slide(_slide)
 
 
 func _show_slide(idx: int) -> void:
-	var d := DIALOGUE[idx]
-	_speaker_lbl.text = d["speaker"]
-	_speaker_lbl.visible = d["speaker"] != ""
-	_text_lbl.text = d["text"]
-	_hint_lbl.text = "[Z / X] Next"
+	var d := DIALOGUE_KEYS[idx]
+	var sp_key: String = d["speaker"]
+	_speaker_lbl.text    = Loc.t(sp_key) if sp_key != "" else ""
+	_speaker_lbl.visible = sp_key != ""
+	_text_lbl.text = Loc.t(d["text"])
+	_hint_lbl.text = Loc.t("cs_hint")
 
 	if idx == SPLIT_SLIDE:
 		# Split: cutscene_4 (left half) + cutscene_nod (right half), each fills its side

@@ -10,11 +10,13 @@ const WIFE_POSITIONS: Array = [
 
 func _setup_stage() -> void:
 	STAGE_DURATION = 600.0
+	_bgm_path = "res://assets/music/bgm_stage1.wav"
 	_alert.configure_high()
 	_hud.enable_suspicion_gauge()
 	_hud.update_suspicion(_alert.get_suspicion())
 	_alert.qte_triggered.connect(_update_suspicion_display)
 	_qte.qte_fail.connect(_update_suspicion_display)
+	_set_stage_hint("hint_stage3")
 
 
 func _move_wife_for_turn() -> void:

@@ -30,7 +30,7 @@ func start_qte() -> void:
 	_elapsed  = 0.0
 	_active   = true
 	_panel.visible = true
-	_title.text    = "QTE — Press keys in order!"
+	_title.text    = Loc.t("qte_title")
 	_bar.value     = 100.0
 	_rebuild_keys()
 

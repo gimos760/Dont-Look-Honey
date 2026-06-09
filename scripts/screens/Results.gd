@@ -12,18 +12,18 @@ func _ready() -> void:
 	var won    := total >= target
 
 	if won:
-		_result_lbl.text = "VICTORY!"
+		_result_lbl.text = Loc.t("result_win")
 		_result_lbl.add_theme_color_override("font_color", Color.YELLOW)
-		_gap_lbl.text    = "You cleared the target. Honey never knew!"
+		_gap_lbl.text    = Loc.t("result_win_sub")
 		AudioManager.play_win()
 	else:
-		_result_lbl.text = "FAILED"
+		_result_lbl.text = Loc.t("result_lose")
 		_result_lbl.add_theme_color_override("font_color", Color.RED)
 		var gap := target - total
-		_gap_lbl.text = "Short by $%.0f" % gap
+		_gap_lbl.text = Loc.t("result_short") % gap
 
-	_amount_lbl.text = "Realized: $%.2f / $%.0f" % [total, target]
-	_hint_lbl.text   = "[Z] Play Again   [X] Lobby"
+	_amount_lbl.text = Loc.t("result_amount") % [total, target]
+	_hint_lbl.text   = Loc.t("result_hint")
 
 
 func _input(event: InputEvent) -> void:

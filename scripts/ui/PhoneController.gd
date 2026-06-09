@@ -153,13 +153,13 @@ func _refresh_mini() -> void:
 			var dir  := "▲" if pos["direction"] == "long" else "▼"
 			lines.append("%s%s x%d  %s%.1f%%" % [s["name"], dir, pos["shares"], sign, pct])
 	if not has_pos:
-		lines.append("No open positions")
+		lines.append(Loc.t("phone_no_pos"))
 	_mini_content.text = "\n".join(lines)
 	_auto_scale_label(_mini_content, 107.0)
 
 	var pnl  := GameManager.realized_pnl
 	var sign := "+" if pnl >= 0 else ""
-	_mini_pnl.text = "P&L %s$%.0f" % [sign, pnl]
+	_mini_pnl.text = Loc.t("phone_pnl") % [sign, pnl]
 	_mini_pnl.add_theme_color_override("font_color",
 		Color(0.0, 0.45, 0.0) if pnl >= 0 else Color(0.7, 0.0, 0.0))
 
@@ -187,6 +187,7 @@ func refresh_current_layer() -> void:
 # --- Input handlers ---
 
 func _handle_confirm() -> void:
+	AudioManager.play_ui_confirm()
 	match current_layer:
 		Layer.STOCK_OVERVIEW:
 			_show_layer(Layer.CHART)
@@ -199,8 +200,10 @@ func _handle_confirm() -> void:
 func _handle_cancel() -> void:
 	match current_layer:
 		Layer.CHART:
+			AudioManager.play_ui_cancel()
 			_show_layer(Layer.STOCK_OVERVIEW)
 		Layer.CONFIRM:
+			AudioManager.play_ui_cancel()
 			_show_layer(Layer.CHART)
 
 
@@ -209,8 +212,10 @@ func _handle_up() -> void:
 		Layer.STOCK_OVERVIEW:
 			selected_stock_idx = max(0, selected_stock_idx - 1)
 			_layer_stock.set_cursor(selected_stock_idx)
+			AudioManager.play_ui_move()
 		Layer.CONFIRM:
 			_layer_confirm.move_selection(-1)
+			AudioManager.play_ui_move()
 
 
 func _handle_down() -> void:
@@ -218,24 +223,29 @@ func _handle_down() -> void:
 		Layer.STOCK_OVERVIEW:
 			selected_stock_idx = min(_market.stocks.size() - 1, selected_stock_idx + 1)
 			_layer_stock.set_cursor(selected_stock_idx)
+			AudioManager.play_ui_move()
 		Layer.CONFIRM:
 			_layer_confirm.move_selection(1)
+			AudioManager.play_ui_move()
 
 
 func _handle_left() -> void:
 	if current_layer == Layer.CHART:
 		_layer_chart.move_selection(-1)
+		AudioManager.play_ui_move()
 
 
 func _handle_right() -> void:
 	if current_layer == Layer.CHART:
 		_layer_chart.move_selection(1)
+		AudioManager.play_ui_move()
 
 
 func _handle_close_shortcut() -> void:
 	if current_layer == Layer.STOCK_OVERVIEW:
 		var s := _market.stocks[selected_stock_idx]
 		_engine.close_position(s["id"])
+		AudioManager.play_ui_confirm()
 		_refresh_current_layer()
 
 
